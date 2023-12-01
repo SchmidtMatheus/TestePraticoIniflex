@@ -1,4 +1,6 @@
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -8,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(Locale.getDefault()));
         List<Funcionario> funcionarios = new ArrayList<>();
 
         // 3.1 – Inserir todos os funcionários
@@ -20,10 +23,10 @@ public class Main {
         funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
 
         // 3.3 – Imprimir todos os funcionários
-        System.out.println("Imprimir todos os funcionários:");
+        System.out.println("3.3 – Imprimir todos os funcionários:");
         funcionarios.forEach(f -> {
-            System.out.printf("Nome: %s, Data de Nascimento: %s, Salário: %,.2f, Função: %s%n",
-                    f.getNome(), f.getDataNascimento().format(formatter), f.getSalario(), f.getFuncao());
+            System.out.printf("Nome: %s, Data de Nascimento: %s, Salário: %s, Função: %s%n",
+                    f.getNome(), f.getDataNascimento().format(formatter), decimalFormat.format(f.getSalario()), f.getFuncao());
         });
 
         // 3.4 – Aumentar salário em 10%
