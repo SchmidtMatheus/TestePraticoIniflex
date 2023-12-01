@@ -23,7 +23,7 @@ public class Main {
         funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
 
         //Imprimir todos os funcionários
-        System.out.println("3.3 – Imprimir todos os funcionários:");
+        System.out.println("Imprimir todos os funcionários:");
         funcionarios.forEach(f -> {
             System.out.printf("Nome: %s, Data de Nascimento: %s, Salário: %s, Função: %s%n",
                     f.getNome(), f.getDataNascimento().format(formatter), decimalFormat.format(f.getSalario()), f.getFuncao());
@@ -37,40 +37,40 @@ public class Main {
                 .collect(Collectors.groupingBy(Funcionario::getFuncao));
 
         // Imprimir os funcionários agrupados por função
-        System.out.println("\n3.6 – Imprimir os funcionários agrupados por função:");
+        System.out.println("\nImprimir os funcionários agrupados por função:");
         funcionariosPorFuncao.forEach((funcao, lista) -> {
             System.out.println("Função: " + funcao);
             lista.forEach(f -> System.out.println("  " + f.getNome()));
         });
 
         //Imprimir os funcionários que fazem aniversário nos meses 10 e 12
-        System.out.println("\n3.8 – Imprimir os funcionários que fazem aniversário nos meses 10 e 12:");
+        System.out.println("\nImprimir os funcionários que fazem aniversário nos meses 10 e 12:");
         funcionarios.stream()
                 .filter(f -> f.getDataNascimento().getMonthValue() == 10 || f.getDataNascimento().getMonthValue() == 12)
                 .forEach(f -> System.out.println("Nome: " + f.getNome() +
                         ", Data de Nascimento: " + f.getDataNascimento().format(formatter)));
 
         // Imprimir o funcionário com a maior idade
-        System.out.println("\n3.9 – Imprimir o funcionário com a maior idade:");
+        System.out.println("\nImprimir o funcionário com a maior idade:");
         Funcionario funcionarioMaiorIdade = Collections.max(funcionarios, Comparator.comparing(f -> f.getDataNascimento()));
         int idade = LocalDate.now().getYear() - funcionarioMaiorIdade.getDataNascimento().getYear();
         System.out.println("Nome: " + funcionarioMaiorIdade.getNome() + ", Idade: " + idade);
 
         // Imprimir a lista de funcionários por ordem alfabética
-        System.out.println("\n3.10 – Imprimir a lista de funcionários por ordem alfabética:");
+        System.out.println("\nImprimir a lista de funcionários por ordem alfabética:");
         funcionarios.stream()
                 .sorted(Comparator.comparing(Funcionario::getNome))
                 .forEach(f -> System.out.println("Nome: " + f.getNome()));
 
         // Imprimir o total dos salários dos funcionários
-        System.out.println("\n3.11 – Imprimir o total dos salários dos funcionários:");
+        System.out.println("\nImprimir o total dos salários dos funcionários:");
         BigDecimal totalSalarios = funcionarios.stream()
                 .map(Funcionario::getSalario)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.printf("Total dos salários: %,.2f%n", totalSalarios);
 
         //Imprimir quantos salários mínimos ganha cada funcionário
-        System.out.println("\n3.12 – Imprimir quantos salários mínimos ganha cada funcionário:");
+        System.out.println("\nImprimir quantos salários mínimos ganha cada funcionário:");
         BigDecimal salarioMinimo = new BigDecimal("1212.00");
         funcionarios.forEach(f -> {
             BigDecimal salariosMinimos = f.getSalario().divide(salarioMinimo, 2, BigDecimal.ROUND_HALF_UP);
