@@ -1,4 +1,4 @@
-```markdown
+
 # Projeto Java - Gerenciamento de Funcionários
 
 Este projeto Java foi desenvolvido para gerenciar informações sobre funcionários, incluindo inserção, remoção, atualização e visualização de dados.
